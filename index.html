@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", maximum-scale=1.0, user-scalable=no">
+    <title>Last Luggage - 最後の手荷物</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen" class="screen">
+        <div class="login-card">
+            <h1>Last Luggage</h1>
+            <p>あなたの名前を教えてください</p>
+            <input type="text" id="user-name-input" placeholder="名前を入力..." maxlength="10">
+            <button id="start-btn">物語を始める</button>
+        </div>
+    </div>
+
+    <div id="chat-screen" class="screen hidden">
+        <div id="header">
+            <div class="back-btn"id="header-back">＜</div>
+            <div class="header-name">紗季</div>
+            <div class="header-icons"id="menu-trigger">☰</div><div id="dropdown-menu" class="hidden">
+        <div class="menu-item" id="menu-reset">物語を最初からやり直す</div>
+    </div>
+    </div>
+        
+        <div id="chat-window">
+            </div>
+
+        <div id="typing-indicator">紗季さんが入力中...</div>
+
+        <div id="input-area">
+            <div class="plus-icon">＋</div>
+            <input type="text" id="user-input" placeholder="メッセージを入力..." autocomplete="off">
+            <button id="send-btn">送信</button>
+        </div>
+        
+    </div>
+    <div id="image-overlay"></div>
+    <div id="ending-layer" class="hidden">
+        <div id="credits-container">
+            <p class="credits-text">Last Luggage - 最後の手荷物</p>
+            <p class="credits-small">Produced by You</p>
+            <p class="credits-thanks">Special Thanks: <span id="credit-user-name"></span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
