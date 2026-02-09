@@ -82,9 +82,26 @@ body {
 
 /* 画像 */
 .diary-img { max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 10px; cursor: pointer; display: block; margin: 5px 0; }
-.diary-img.enlarged { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 90vw; max-height: 80vh; z-index: 1000; box-shadow: 0 0 50px rgba(0,0,0,0.8); object-fit: contain; }
-#image-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 999; }
-
+.diary-img.enlarged {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 95vw; /* スマホ向けに少し広げる */
+    max-height: 85vh;
+    z-index: 2100; /* オーバーレイ(2000)より必ず大きくする */
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    object-fit: contain;
+    cursor: zoom-out;
+}
+#image-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 2000; /* 重なり順を上げる */
+    cursor: pointer; /* スマホでクリック判定を確実に持たせるために必須 */
+}
 /* 入力エリア */
 #input-area { 
     background: #fff; padding: 10px; display: flex; align-items: center; gap: 10px; flex-shrink: 0;
