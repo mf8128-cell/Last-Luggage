@@ -16,8 +16,8 @@ const scenario = [
     { type: "saki", text: "数日前、3年前に失踪した兄の当時の手荷物が落とし物センター経由でうちへ届きました。" },
     { type: "saki", text: "中には使い込まれたノートが一冊入ってましたが、私には何のことが書かれているのか全く分かりませんでした……。" },
     { type: "saki", text: "${userName}さん、お兄ちゃんを探すために協力してもらえると嬉しいです！ 早速、鞄に入っていた日記の最初のページを見せますね。" },
-    { type: "saki", text: "2023年4月14日。お兄ちゃんが失踪した直後の日付。" },
-    { type: "saki", text: "これ、どこのことなのか分かりますか？" },
+    { type: "saki", text: "2023年4月14日。お兄ちゃんが失踪した直後の日付。", wait: 5000 },
+    { type: "saki", text: "これ、どこのことなのか分かりますか？", wait: 5000 },
     {
         type: "quest",
         id: 1,
@@ -158,30 +158,15 @@ function addMessage(text, type, img = null) {
     image.src = img;
     image.className = 'diary-img';
     
-    image.onclick = (e) => {
-        e.stopPropagation(); // 吹き出し自体のクリックイベントなどが反応しないようにする
+    // クリックした時：オーバーレイ専用の画像枠にパスを渡して表示する
+    image.onclick = () => {
         const overlay = document.getElementById('image-overlay');
+        const overlayImg = document.getElementById('overlay-img');
         
-        // 拡大
-        image.classList.add('enlarged');
-        overlay.style.display = 'block';
-
-        // 閉じる処理（画像をクリックしても背景をクリックしても閉じる）
-        const closeImage = () => {
-            image.classList.remove('enlarged');
-            overlay.style.display = 'none';
-            overlay.onclick = null; // イベントを解除
-            image.onclick = (e) => { // 元の拡大処理に戻す
-                /* ここに自分自身の再クリック処理を再帰的に書くか、
-                   関数として外に切り出すのが理想です。 */
-                location.reload(); // 一番確実なのは現状の再定義ですが、
-                                   // 下記の「改善案」を推奨します。
-            };
-        };
-        
-        // 拡大中にクリックしたら閉じる設定
-        overlay.onclick = closeImage;
-        image.onclick = closeImage;
+        if (overlayImg) {
+            overlayImg.src = image.src; // クリックした画像のパスをコピー
+            overlay.style.display = 'flex'; // 中央寄せで表示
+        }
     };
 
     bubble.appendChild(image);
@@ -313,4 +298,13 @@ if (window.visualViewport) {
     };
     window.visualViewport.addEventListener('resize', adjust);
     userInput.addEventListener('focus', () => setTimeout(adjust, 300));
+}
+// 黒い背景（オーバーレイ）のどこをタップしても閉じるようにする
+const imageOverlay = document.getElementById('image-overlay');
+if (imageOverlay) {
+    imageOverlay.onclick = function() {
+        this.style.display = 'none';
+        const overlayImg = document.getElementById('overlay-img');
+        if (overlayImg) overlayImg.src = ""; // 消すときにリセット
+    };
 }
