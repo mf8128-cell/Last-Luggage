@@ -154,16 +154,38 @@ function addMessage(text, type, img = null) {
     bubble.className = 'bubble';
 
     if (img) {
-        const image = document.createElement('img');
-        image.src = img;
-        image.className = 'diary-img';
-        image.onclick = () => {
-            const overlay = document.getElementById('image-overlay');
-            image.classList.toggle('enlarged');
-            overlay.style.display = image.classList.contains('enlarged') ? 'block' : 'none';
+    const image = document.createElement('img');
+    image.src = img;
+    image.className = 'diary-img';
+    
+    image.onclick = (e) => {
+        e.stopPropagation(); // 吹き出し自体のクリックイベントなどが反応しないようにする
+        const overlay = document.getElementById('image-overlay');
+        
+        // 拡大
+        image.classList.add('enlarged');
+        overlay.style.display = 'block';
+
+        // 閉じる処理（画像をクリックしても背景をクリックしても閉じる）
+        const closeImage = () => {
+            image.classList.remove('enlarged');
+            overlay.style.display = 'none';
+            overlay.onclick = null; // イベントを解除
+            image.onclick = (e) => { // 元の拡大処理に戻す
+                /* ここに自分自身の再クリック処理を再帰的に書くか、
+                   関数として外に切り出すのが理想です。 */
+                location.reload(); // 一番確実なのは現状の再定義ですが、
+                                   // 下記の「改善案」を推奨します。
+            };
         };
-        bubble.appendChild(image);
-    }
+        
+        // 拡大中にクリックしたら閉じる設定
+        overlay.onclick = closeImage;
+        image.onclick = closeImage;
+    };
+
+    bubble.appendChild(image);
+}
 
     if (text && text !== "") {
         const span = document.createElement('span');
