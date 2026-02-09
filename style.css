@@ -172,3 +172,14 @@ body {
     padding: 0 10px;
     font-size: 20px;
 }
+.icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* 円形にする */
+    background-image: url('saki-icon.jpg'); /* ★ここにファイル名を指定 */
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px;
+    flex-shrink: 0; /* アイコンが潰れないように固定 */
+    border: 1px solid #eee; /* 薄い枠線を入れると本物っぽくなります */
+}
