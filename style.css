@@ -95,12 +95,22 @@ body {
     cursor: zoom-out;
 }
 #image-overlay {
-    display: none;
+    display: none; /* 初期状態 */
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 2000; /* 重なり順を上げる */
-    cursor: pointer; /* スマホでクリック判定を確実に持たせるために必須 */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* 少し暗めにして画像を際立たせる */
+    z-index: 9999; /* 何よりも手前に */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#overlay-img {
+    max-width: 95%;
+    max-height: 90%;
+    object-fit: contain;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
 }
 /* 入力エリア */
 #input-area { 
