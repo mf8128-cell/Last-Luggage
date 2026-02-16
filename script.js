@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'last_luggage_save';
+                                                                        const STORAGE_KEY = 'last_luggage_save';
 
 const INCORRECT_MESSAGES = [
     "うーん、そこじゃないのかな……。ごめんね、もう一回日記の言葉を二人でよく見てみよう？",
@@ -48,7 +48,7 @@ const scenario = [
     { type: "saki", text: "日記の最後の方がちょっと変じゃないですか？" , wait: 10000},
     { type: "saki", text: "「大事なものが消えていくみたい」だなんて、どういうことだろう……。" , wait: 10000},
     { type: "saki", text: "とりあえず、お兄ちゃんが今どこにいるか突き止めなきゃ。" , wait: 10000},
-    { type: "saki", text: "この「巨人がいた場所」って、どこか心当たりありますか？" , wait: 10000},
+    { type: "saki", text: "この巨人がいた場所って、どこか心当たりありますか？" , wait: 10000},
     {
         type: "quest",
         id: 3,
@@ -56,7 +56,9 @@ const scenario = [
         text: "",
         answer: ["山下ふ頭"],
         nearMiss: [
-            { trigger: "横浜", response: "やっぱり横浜だよね！ 私もそう思う！ でも、具体的にどこなんだろう？ 横浜の海沿いのどこかだと思うんだけど……。" }
+            { trigger: "横浜", response: "やっぱりそこだよね！ 私もそう思う！ でも、具体的に台座の場所ってどこなんだろう？ 横浜の海沿いのどこかだと思うんだけど……。" },
+            { trigger: "ガンダム", response: "やっぱりそうだよね！ 私もそう思う！ でも、具体的に台座の場所ってどこなんだろう？ 横浜の海沿いのどこかだと思うんだけど……。" },
+            { trigger: "GUNDAM", response: "やっぱりそうだよね！ 私もそう思う！ でも、具体的に台座の場所ってどこなんだろう？ 横浜の海沿いのどこかだと思うんだけど……。" }
         ],
         correct: "山下ふ頭だ……！ ", wait: 10000,
     },
